@@ -12,13 +12,13 @@ library(readr)
 library(tidyverse)
 nobel_data <- read.csv("data/nobel_prize_by_winner.csv")
 dummy <- "all"
-# Define UI for application that draws a histogram
+# Define UI 
 ui <- fluidPage(
 
     # Application title
     titlePanel("Final Project"),
 
-    # Sidebar with a slider input for number of bins 
+    # Sidebar with radio buttons for filtering
     sidebarLayout(
         sidebarPanel(
           radioButtons("filter_gender", "Filter by Gender:",
@@ -42,7 +42,7 @@ ui <- fluidPage(
         )
         ,
 
-        # Show a plot of the generated distribution
+        # Show tabs with both a table and a graph 
         mainPanel( width = 500,
           tabsetPanel( type = "tabs",
            tabPanel("Graph",plotOutput("distPlot")),
@@ -52,7 +52,7 @@ ui <- fluidPage(
     )
 )
 
-# Define server logic required to draw a histogram
+# Define server to draw the graph
 server <- function(input, output) {
 
     output$distPlot <- renderPlot({
